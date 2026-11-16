@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5eee7">
+  <title>For Mrs. BlueBerry</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main class="page-shell">
+    <div class="topline"><span>THE LITTLE POST OFFICE</span><span class="live"><i></i> PRIVATE LETTER ROOM</span></div>
+    <section class="hero">
+      <p class="eyebrow">A little something, sealed with love</p>
+      <h1>You've got a letter.</h1>
+      <p class="intro">Some words deserve an envelope of their own.</p>
+      <button class="envelope-wrap" id="openEnvelope" aria-label="Open the sealed envelope">
+        <div class="envelope">
+          <div class="envelope-back"></div>
+          <div class="letter-peek"></div>
+          <div class="envelope-front"></div>
+          <div class="flap"></div>
+          <div class="wax" aria-hidden="true"><span>♥</span></div>
+        </div>
+        <span class="tap-hint">TAP THE SEAL TO OPEN</span>
+      </button>
+      <div class="address">
+        <p><span>For:</span> Mrs. BlueBerry</p>
+        <p><span>From:</span> Mr. BlackBerry</p>
+      </div>
+      <p class="room-note" id="roomNote">A shared little corner, just for the two of you.</p>
+    </section>
+    <footer>MADE OF WORDS & A LITTLE MAGIC <span>✦</span></footer>
+  </main>
+
+  <div class="overlay" id="choiceOverlay" hidden>
+    <section class="dialog choice-dialog" role="dialog" aria-modal="true" aria-labelledby="choiceTitle">
+      <button class="close" data-close aria-label="Close">×</button>
+      <p class="eyebrow">THE ENVELOPE IS OPEN</p>
+      <h2 id="choiceTitle">What would you like to do?</h2>
+      <p class="muted">Leave a little note, or read the latest one.</p>
+      <div class="actions">
+        <button class="primary" id="createBtn">✎ &nbsp; Create a letter</button>
+        <button class="secondary" id="viewBtn">♡ &nbsp; View the letter</button>
+      </div>
+      <p class="tiny" id="choiceStatus"></p>
+    </section>
+  </div>
+
+  <div class="overlay" id="editorOverlay" hidden>
+    <section class="dialog editor-dialog" role="dialog" aria-modal="true" aria-labelledby="editorTitle">
+      <button class="close" data-close aria-label="Close">×</button>
+      <p class="eyebrow">PEN TO PAPER</p>
+      <h2 id="editorTitle">Write your letter.</h2>
+      <p class="muted">Your words will appear on the other device, too.</p>
+      <textarea id="letterText" maxlength="20000" placeholder="Dear Mrs. BlueBerry,&#10;&#10;..."></textarea>
+      <div class="editor-bottom"><span id="saveStatus">Only the people with this room link can open it.</span><button class="primary" id="saveBtn">Save letter</button></div>
+    </section>
+  </div>
+
+  <div class="overlay" id="readerOverlay" hidden>
+    <section class="dialog reader-dialog" role="dialog" aria-modal="true" aria-labelledby="readerTitle">
+      <button class="close" data-close aria-label="Close">×</button>
+      <p class="eyebrow">A LETTER FOR YOU</p>
+      <h2 id="readerTitle">With love, in words.</h2>
+      <div class="letter-paper"><p id="letterBody" class="letter-body">There isn't a letter here just yet.</p></div>
+      <p class="sync-status" id="syncStatus"><i></i> Live updates are on</p>
+      <button class="secondary full" data-close>Close letter</button>
+    </section>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
